@@ -39,5 +39,11 @@ namespace SkeeBall.Models
         {
             return Name + "   " + Value.ToString();
         }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -32,9 +32,9 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Name="scoreBox" Text="{Binding Score1, StringFormat=\{0:000\}}" FontSize="200"/>
+            <TextBlock Name="scoreBox" Text="{Binding Machine1.Score, StringFormat=\{0:000\}}" FontSize="200"/>
             <Grid Grid.Column="1" >
-                <TextBlock Name="scoreBox2" Text="{Binding Score2, StringFormat=\{0:000\}}" FontSize="200"/>
+                <TextBlock Name="scoreBox2" Text="{Binding Machine2.Score, StringFormat=\{0:000\}}" FontSize="200"/>
                 <ListBox Height="180" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="203" ItemsSource="{Binding HighScores}" />
             </Grid>
         </Grid>
@@ -52,7 +52,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Balls Played" />
-                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding BallsPlayed1}" />
+                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding Machine1.BallsPlayed}" />
             </Grid>
 
             <Grid Grid.Column="1" Background="White" >
@@ -61,7 +61,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Balls Played" />
-                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding BallsPlayed2}" />
+                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding Machine2.BallsPlayed}" />
             </Grid>
             
             <Grid Grid.Column="2">
@@ -70,7 +70,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="High Score" />
-                <TextBlock Name="HighScoreText" Grid.Row="1" Text="{Binding HighScores}" />
+                <TextBlock Name="HighScoreText" Grid.Row="1" Text="{Binding HighScore}" />
             </Grid>
         </Grid>
         <ListBox Width="203" Height="180" HorizontalAlignment="Left" VerticalAlignment="Top"  Name="keyList" />

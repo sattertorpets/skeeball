@@ -5,7 +5,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" Margin="39,0,39,39" Name="stackPanel1" VerticalAlignment="Stretch" Width="200" >
             <Button Content="Skee Ball" Height="40" Name="label1" FontSize="24" HorizontalContentAlignment="Center" Click="label1_Click" />
-            <Button Content="Classic" Height="40" Name="label2" FontSize="24" HorizontalContentAlignment="Center" />
+            <Button Content="Classic" Height="40" Name="label2" FontSize="24" HorizontalContentAlignment="Center" Click="label2_Click" />
             <Button Content="310" Height="40" Name="label3" FontSize="24" HorizontalContentAlignment="Center" />
             <Button Content="Flash Ball" Height="40" Name="label4" FontSize="24" HorizontalContentAlignment="Center" />
         </StackPanel>

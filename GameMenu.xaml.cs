@@ -29,6 +29,11 @@ namespace SkeeBall
 
         private void label1_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void label2_Click(object sender, RoutedEventArgs e)
+        {
             Classic2P game = new Classic2P();
             game.Owner = this;
             game.Show();

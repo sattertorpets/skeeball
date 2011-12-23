@@ -8,8 +8,6 @@ namespace SkeeBall.Models
 {
     public class Machine : DependencyObject
     {
-
-
         public int Score
         {
             get { return (int)GetValue(ScoreProperty); }

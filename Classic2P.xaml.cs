@@ -22,7 +22,7 @@ namespace SkeeBall
     /// </summary>
     public partial class Classic2P : Window
     {
-        int LastTimeStamp = 0;
+        int BallTimestamp = 0;
         public Classic Model { get; set; }
 
         public Classic2P()
@@ -38,7 +38,11 @@ namespace SkeeBall
         {
             if (e.IsRepeat)
                 return;
-            LastTimeStamp = e.Timestamp;
+            if ((e.Timestamp - BallTimestamp) <= 1000)
+            {
+                Console.WriteLine("Double switch detected");
+                return;
+            }
             bool NoKey = false;
             Enum Hole10, Hole20, Hole30, Hole40, Hole50, HoleL100, HoleR100, Gutter, UpKey, DownKey, SelectKey, BackKey;
 
@@ -74,19 +78,10 @@ namespace SkeeBall
             }
             if (!NoKey)     //If a valid key was pressed
             {
-                scoreBox.Text = String.Format("{0:000}", Score);
-                ballBox.Text = Convert.ToString(BallsPlayed);
-                if (BallsPlayed == 9)
+                BallTimestamp = e.Timestamp;
+                if (Model.Machine1.BallsPlayed == 9)
                 {
-                    GameOver();
-                    GameMenu wdwSelectGame = new GameMenu();
-                    wdwSelectGame.Owner = Window.GetWindow(this);
-                    wdwSelectGame.Height *= 1.5;
-                    wdwSelectGame.Width *= 1.5;
-                    wdwSelectGame.ShowDialog();
-                    wdwSelectGame.HorizontalAlignment = HorizontalAlignment.Center;
-                    wdwSelectGame.VerticalAlignment = VerticalAlignment.Center;
-
+                    GameOver(Model.Machine1.Score);
                 }
                 keyList.Items.Add(e.Key + " @ " + e.Timestamp);
                 keyList.ScrollIntoView(keyList.Items.GetItemAt(keyList.Items.Count - 1));
@@ -96,24 +91,43 @@ namespace SkeeBall
 
         private void NewGame()
         {
-            BallsPlayed = 0;
-            Score = 0;
-            scoreBox.Text = String.Format("{0:000}", Score);
-            ballBox.Text = Convert.ToString(BallsPlayed);
+            Model.Machine1.BallsPlayed = 0;
+            Model.Machine1.Score = 0;
         }
 
-        private void GameOver()
+        private void GameOver(int score)
         {
-            if (Model.HighestScore < Score)  //if new high score list entry
+            int numHighScores = Model.HighScores.Count - 1;
+            int newRank = numHighScores + 1;
+            if (Model.HighScores.ElementAt(numHighScores).Value < score)  //if higher than the last item in the high score list
             {
-                Model.HighScores.RemoveAt(Model.HighScores.Count - 1);
-                Model.HighScores.Add(Score);
+                for (int i = 0; i < numHighScores; i++)
+                {
+                    if (score > Model.HighScores.ElementAt(i).Value & i < newRank)
+                    {
+                        newRank = i;    //this is the index of the new high score
+                        break;  //exit for loop
+                    }
+                }
+                Model.HighScores.RemoveAt(numHighScores);  //remove last score
+                Score newHighScore = new Score();
+                newHighScore.Name = "Player1";
+                newHighScore.Value = score;
+                Model.HighScores.Add(newHighScore);     //add new score at the bottom of the list
+                
+                //rebuild high score list from bottom up
+                //for (int i = numHighScores; i >= newRank; i--)
+                //{
+                //    Model.HighScores.ElementAt(i).Value = Model.HighScores.ElementAt(i - 1).Value;
+                //}
+                Util.WriteScores(Model.HighScores, "ClassicNames", "ClassicScores");
+                MessageBox.Show("New High Score");
             }
             else
             {
                 MessageBox.Show("GAME OVER");
             }
-            Util.WriteScores(Model.HighScores, "ClassicNames", "ClassicScores");
+            
             NewGame();
 
         }

@@ -22,7 +22,6 @@ namespace SkeeBall.Models
             DependencyProperty.Register("HighestScore", typeof(int), typeof(Classic), new UIPropertyMetadata(0));
 
 
-
         public Machine Machine1
         {
             get { return (Machine)GetValue(Machine1Property); }
@@ -31,7 +30,7 @@ namespace SkeeBall.Models
 
         // Using a DependencyProperty as the backing store for Machine1.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty Machine1Property =
-            DependencyProperty.Register("Machine1", typeof(Machine), typeof(Classic), new UIPropertyMetadata(new Machine()));
+            DependencyProperty.Register("Machine1", typeof(Machine), typeof(Classic), new UIPropertyMetadata(null));  //using null doesn't work right
 
 
 
@@ -43,7 +42,7 @@ namespace SkeeBall.Models
 
         // Using a DependencyProperty as the backing store for Machine2.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty Machine2Property =
-            DependencyProperty.Register("Machine2", typeof(Machine), typeof(Classic), new UIPropertyMetadata(new Machine()));
+            DependencyProperty.Register("Machine2", typeof(Machine), typeof(Classic), new UIPropertyMetadata(null));
 
         
 
