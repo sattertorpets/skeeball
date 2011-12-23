@@ -42,8 +42,14 @@ namespace SkeeBall.Models
 
         public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Score)
+            {
+                return this.Value.CompareTo(((Score)obj).Value);
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
         }
-
     }
 }

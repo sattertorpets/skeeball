@@ -95,25 +95,31 @@ namespace SkeeBall
             Model.Machine1.Score = 0;
         }
 
+        private bool CheckForHighScore(int score)
+        {
+            return false;
+        }
+
         private void GameOver(int score)
         {
             int numHighScores = Model.HighScores.Count - 1;
             int newRank = numHighScores + 1;
             if (Model.HighScores.ElementAt(numHighScores).Value < score)  //if higher than the last item in the high score list
             {
-                for (int i = 0; i < numHighScores; i++)
-                {
-                    if (score > Model.HighScores.ElementAt(i).Value & i < newRank)
-                    {
-                        newRank = i;    //this is the index of the new high score
-                        break;  //exit for loop
-                    }
-                }
+                //for (int i = 0; i < numHighScores; i++)
+                //{
+                //    if (score > Model.HighScores.ElementAt(i).Value & i < newRank)
+                //    {
+                //        newRank = i;    //this is the index of the new high score
+                //        break;  //exit for loop
+                //    }
+                //}
                 Model.HighScores.RemoveAt(numHighScores);  //remove last score
                 Score newHighScore = new Score();
                 newHighScore.Name = "Player1";
                 newHighScore.Value = score;
                 Model.HighScores.Add(newHighScore);     //add new score at the bottom of the list
+                Model.HighScores.ReverseBubbleSort();
                 
                 //rebuild high score list from bottom up
                 //for (int i = numHighScores; i >= newRank; i--)
