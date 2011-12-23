@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SkeeBall.Models;
 
 namespace SkeeBall
 {
@@ -18,9 +19,19 @@ namespace SkeeBall
     /// </summary>
     public partial class GameMenu : Window
     {
+        public Classic MainGame { get; set; }
+
         public GameMenu()
         {
             InitializeComponent();
+            MainGame = new Classic();
+        }
+
+        private void label1_Click(object sender, RoutedEventArgs e)
+        {
+            Classic2P game = new Classic2P();
+            game.Owner = this;
+            game.Show();
         }
     }
 }

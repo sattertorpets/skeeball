@@ -53,7 +53,9 @@
     <Compile Include="BensWindow.xaml.cs">
       <DependentUpon>BensWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bindings.cs" />
+    <Compile Include="Models\Classic.cs" />
+    <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\Score.cs" />
     <Compile Include="Navigation.xaml.cs">
       <DependentUpon>Navigation.xaml</DependentUpon>
     </Compile>
@@ -61,6 +63,7 @@
       <DependentUpon>GameMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Util.cs" />
     <Page Include="BensWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

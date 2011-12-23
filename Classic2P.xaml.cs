@@ -22,17 +22,16 @@ namespace SkeeBall
     /// </summary>
     public partial class Classic2P : Window
     {
-        int Score = 0;
-        int BallsPlayed = 0;
         int LastTimeStamp = 0;
-        public Bindings Model { get; set; }
+        public Classic Model { get; set; }
 
         public Classic2P()
         {
             InitializeComponent();
-            Model = new Bindings();
+            Model = new Classic();
+            Model.HighScores = Util.LoadScores("ClassicNames", "ClassicScores");
+            Model.HighestScore = Model.HighScores.First<Score>().Value;
             this.DataContext = Model;
-            LoadHighScores();
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
@@ -46,25 +45,25 @@ namespace SkeeBall
             switch (e.Key)
             {
                 case Key.A:
-                    Score = Score + 10;
+                    Model.Machine1.Score += 10;
                     break;
                 case Key.B:
-                    Score = Score + 20;
+                    Model.Machine1.Score += 20;
                     break;
                 case Key.C:
-                    Score = Score + 30;
+                    Model.Machine1.Score += 30;
                     break;
                 case Key.D:
-                    Score = Score + 40;
+                    Model.Machine1.Score += 40;
                     break;
                 case Key.E:
-                    Score = Score + 50;
+                    Model.Machine1.Score += 50;
                     break;
                 case Key.F:
-                    Score = Score + 100;
+                    Model.Machine1.Score += 100;
                     break;
                 case Key.G:
-                    BallsPlayed += 1;
+                    Model.Machine1.BallsPlayed += 1;
                     break;
                 case Key.H:
                     NewGame();
@@ -105,42 +104,20 @@ namespace SkeeBall
 
         private void GameOver()
         {
-            if (Convert.ToInt16(HighScoreText.Text) < Score)
+            if (Model.HighestScore < Score)  //if new high score list entry
             {
-                HighScoreText.Text = String.Format("{0:000}", Score);
-                MessageBox.Show("Congratulations, you have a new High Score!");
+                Model.HighScores.RemoveAt(Model.HighScores.Count - 1);
+                Model.HighScores.Add(Score);
             }
             else
             {
                 MessageBox.Show("GAME OVER");
             }
+            Util.WriteScores(Model.HighScores, "ClassicNames", "ClassicScores");
             NewGame();
+
         }
-        private void LoadHighScores()
-        {
-            //StringCollection Game310Data = Properties.Settings.Default.Game310Names;
-            StringCollection Game310Scores = Properties.Settings.Default.Game310Scores;
-            StringCollection SkeeBallScores = Properties.Settings.Default.SkeeBallScores;
-            StringCollection ClassicScores = Properties.Settings.Default.ClassicScores;
-            StringCollection FlashBallScores = Properties.Settings.Default.FlashBallScores;
 
-            Int32Collection Game310IntScores = new Int32Collection();
-            Int32Collection SkeeBallIntScores = new Int32Collection();
-            Int32Collection FlashBallIntScores = new Int32Collection();
-            Int32Collection ClassicIntScores = new Int32Collection();
-
-            foreach (String score in Game310Scores)
-	        {
-               Game310IntScores.Add(Int32.Parse(score));
-	        }
-            //put into key/value pair
-
-            List<List<string>> HSdata = new List<List<string>>();
-
-            
-                
-          
-        }
 
     }
 }
