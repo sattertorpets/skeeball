@@ -4,7 +4,7 @@
         Title="Skee Ball Classic" KeyUp="OnKeyUp"
         Topmost="True" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="600" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style TargetType="TextBlock">
+        <Style TargetType="TextBlock" x:Key="scoreStyle">
             <Setter Property="FontFamily" Value="Skeeble"/>
             <Setter Property="Foreground" Value="Red" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -32,10 +32,10 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Name="scoreBox" Text="{Binding Machine1.Score, StringFormat=\{0:000\}}" FontSize="200"/>
+            <TextBlock Name="scoreBox" Text="{Binding Machine1.Score, StringFormat=\{0:000\}}" FontSize="200" Style="{StaticResource scoreStyle}"/>
             <Grid Grid.Column="1" >
-                <TextBlock Name="scoreBox2" Text="{Binding Machine2.Score, StringFormat=\{0:000\}}" FontSize="200"/>
-                <ListBox Height="180" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="203" ItemsSource="{Binding HighScores}" />
+                <TextBlock Name="scoreBox2" Text="{Binding Machine2.Score, StringFormat=\{0:000\}}" FontSize="200" Style="{StaticResource scoreStyle}"/>
+                <ListBox Height="180" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" ItemsSource="{Binding HighScores}" />
             </Grid>
         </Grid>
 
@@ -52,7 +52,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Balls Played" />
-                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding Machine1.BallsPlayed}" />
+                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding Machine1.BallsPlayed}" Style="{StaticResource scoreStyle}" />
             </Grid>
 
             <Grid Grid.Column="1" Background="White" >
@@ -61,7 +61,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Balls Played" />
-                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding Machine2.BallsPlayed}" />
+                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding Machine2.BallsPlayed}" Style="{StaticResource scoreStyle}" />
             </Grid>
             
             <Grid Grid.Column="2">
@@ -70,7 +70,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="High Score" />
-                <TextBlock Name="HighScoreText" Grid.Row="1" Text="{Binding HighScore}" />
+                <TextBlock Name="HighScoreText" Grid.Row="1" Text="{Binding HighScore}" Style="{StaticResource scoreStyle}" />
             </Grid>
         </Grid>
         <ListBox Width="203" Height="180" HorizontalAlignment="Left" VerticalAlignment="Top"  Name="keyList" />

@@ -115,12 +115,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HighScoreCode.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="FontResizing.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\backbutton.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\upbutton.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="OldWindow.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

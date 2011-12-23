@@ -44,7 +44,11 @@ namespace SkeeBall.Models
         public static readonly DependencyProperty Machine2Property =
             DependencyProperty.Register("Machine2", typeof(Machine), typeof(Classic), new UIPropertyMetadata(null));
 
-        
+        public Classic()
+        {
+            Machine1 = new Machine();
+            Machine2 = new Machine();
+        }
 
     }
 }
