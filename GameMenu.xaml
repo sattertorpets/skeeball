@@ -1,14 +1,21 @@
 ﻿<Window x:Class="SkeeBall.GameMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GameMenu" Height="300" Width="300" FocusManager.FocusedElement="{Binding ElementName=label1}">
-    <Grid>
+        Title="GameMenu" Height="300" Width="300" FocusManager.FocusedElement="{Binding ElementName=label1}" Topmost="False">
+    <StackPanel>
         <StackPanel HorizontalAlignment="Center" Margin="39,0,39,39" Name="stackPanel1" VerticalAlignment="Stretch" Width="200" >
             <Button Content="Skee Ball" Height="40" Name="label1" FontSize="24" HorizontalContentAlignment="Center" Click="label1_Click" />
             <Button Content="Classic" Height="40" Name="label2" FontSize="24" HorizontalContentAlignment="Center" Click="label2_Click" />
             <Button Content="310" Height="40" Name="label3" FontSize="24" HorizontalContentAlignment="Center" />
             <Button Content="Flash Ball" Height="40" Name="label4" FontSize="24" HorizontalContentAlignment="Center" />
         </StackPanel>
-        <Label Content="Game Description" Height="28" HorizontalAlignment="Left" Margin="0,233,0,0" Name="lblGameDescript" VerticalAlignment="Top" Width="278" HorizontalContentAlignment="Center" />
-    </Grid>
+        <ItemsControl x:Name="nameList" ItemsSource="{Binding Names}" IsEnabled="True">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Height="40" FontSize="24" HorizontalContentAlignment="Center" Content="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Label Content="Game Description" Height="28" Name="lblGameDescript" HorizontalContentAlignment="Center" />
+    </StackPanel>
 </Window>
