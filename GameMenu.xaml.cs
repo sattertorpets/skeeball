@@ -22,17 +22,13 @@ namespace SkeeBall
     {
         public Classic MainGame { get; set; }
 
-        public ObservableCollection<string> Names { get; set; }
+
 
         public GameMenu()
         {
             InitializeComponent();
             MainGame = new Classic();
-            Names = new ObservableCollection<string>();
-            Names.Add("Ben");
-            Names.Add("Nick");
-            Names.Add("Kat");
-            nameList.DataContext = this;
+
         }
 
         private void label1_Click(object sender, RoutedEventArgs e)

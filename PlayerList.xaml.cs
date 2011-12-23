@@ -10,17 +10,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace SkeeBall
 {
     /// <summary>
-    /// Interaction logic for BensWindow.xaml
+    /// Interaction logic for PlayerList.xaml
     /// </summary>
-    public partial class BensWindow : Window
+    
+    public partial class PlayerList : Window
     {
-        public BensWindow()
+        public ObservableCollection<string> PlayerNames { get; set; }
+        public PlayerList()
         {
             InitializeComponent();
+            PlayerNames = new ObservableCollection<string>();
+            PlayerNames.Add("Ben");
+            PlayerNames.Add("Nick");
+            PlayerNames.Add("Kat");
+            nameList.DataContext = this;
         }
     }
 }

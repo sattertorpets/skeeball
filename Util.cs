@@ -38,6 +38,16 @@ namespace SkeeBall
             Properties.Settings.Default.Save();
         }
 
+        public static ObservableCollection<string> LoadNames()
+        {
+            ObservableCollection<string> PlayerNames = new ObservableCollection<string>();
+            foreach (string playerName in Properties.Settings.Default.PlayerList)
+            {
+                PlayerNames.Add(playerName);
+            }
+            return PlayerNames;
+        }
+
 
     }
 

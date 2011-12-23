@@ -1,0 +1,14 @@
+﻿<Window x:Class="SkeeBall.PlayerList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PlayerList" Height="500" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ItemsControl x:Name="nameList" ItemsSource="{Binding PlayerNames}" IsEnabled="True">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Height="40" FontSize="24" HorizontalContentAlignment="Center" Content="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>

@@ -193,6 +193,7 @@ namespace SkeeBall.Properties {
   <string>Laurie</string>
   <string>Skank</string>
   <string>Steve</string>
+  <string>Create New</string>
   <string>Melanie</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection PlayerList {

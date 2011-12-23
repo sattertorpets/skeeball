@@ -9,13 +9,7 @@
             <Button Content="310" Height="40" Name="label3" FontSize="24" HorizontalContentAlignment="Center" />
             <Button Content="Flash Ball" Height="40" Name="label4" FontSize="24" HorizontalContentAlignment="Center" />
         </StackPanel>
-        <ItemsControl x:Name="nameList" ItemsSource="{Binding Names}" IsEnabled="True">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Height="40" FontSize="24" HorizontalContentAlignment="Center" Content="{Binding}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        
         <Label Content="Game Description" Height="28" Name="lblGameDescript" HorizontalContentAlignment="Center" />
     </StackPanel>
 </Window>
