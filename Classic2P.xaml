@@ -1,0 +1,80 @@
+﻿<Window x:Class="SkeeBall.Classic2P"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Skee Ball Classic" KeyUp="OnKeyUp"
+        Topmost="True" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="600" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Skeeble"/>
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="90" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Background="Silver" />
+
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="scoreBox" Text="{Binding Score1, StringFormat=\{0:000\}}" FontSize="200"/>
+            <Grid Grid.Column="1" >
+                <TextBlock Name="scoreBox2" Text="{Binding Score2, StringFormat=\{0:000\}}" FontSize="200"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Balls Played" />
+                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding BallsPlayed1}" />
+            </Grid>
+
+            <Grid Grid.Column="1" Background="White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Balls Played" />
+                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding BallsPlayed2}" />
+            </Grid>
+            
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="High Score" />
+                <TextBlock Name="HighScoreText" Grid.Row="1" Text="000" />
+            </Grid>
+        </Grid>
+        <ListBox Width="203" Height="180" HorizontalAlignment="Left" VerticalAlignment="Top"  Name="keyList" />
+    </Grid>
+
+            
+    
+</Window>

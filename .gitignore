@@ -1,0 +1,8 @@
+
+/bin
+/_ReSharper.SkeeBall
+/obj
+*.user
+*.suo
+*.txt
+*.aspx
