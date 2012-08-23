@@ -1,0 +1,83 @@
+﻿<Window x:Class="SkeeBall.Cricket2P"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Skee Ball Cricket" KeyUp="OnKeyUp" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="scoreStyle">
+            <Setter Property="FontFamily" Value="Tahoma"/>
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="40" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="Silver" />
+
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Player 1" Style="{StaticResource scoreStyle}" />
+                <CheckBox Content="CheckBox" Height="16" Name="checkBox1" />
+                <TextBlock Name="scoreBox" Text="{Binding PLayer1.Score, StringFormat=\{0:000\}}" FontSize="200" Style="{StaticResource scoreStyle}"/>
+            </StackPanel>
+            
+            <Grid Grid.Column="2" >
+                <TextBlock Name="scoreBox2" Text="{Binding Player2.Score, StringFormat=\{0:000\}}" FontSize="200" Style="{StaticResource scoreStyle}"/>
+                
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Balls Played" />
+                <TextBlock Name="ballBox" Grid.Row="1" Text="{Binding Machine1.BallsPlayed}" Style="{StaticResource scoreStyle}" />
+            </Grid>
+
+            <Grid Grid.Column="1" Background="White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Balls Played" />
+                <TextBlock Name="ballBox2" Grid.Row="1" Text="{Binding Machine2.BallsPlayed}" Style="{StaticResource scoreStyle}" />
+            </Grid>
+            
+            <Grid Grid.Column="2">
+                <ListBox HorizontalAlignment="Left" VerticalAlignment="Top"  Name="keyList" />
+            </Grid>
+        </Grid>
+        
+    </Grid>
+
+            
+    
+</Window>

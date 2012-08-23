@@ -12,5 +12,6 @@ namespace SkeeBall
     /// </summary>
     public partial class App : Application
     {
+        //TODO: Global exception handling here.
     }
 }

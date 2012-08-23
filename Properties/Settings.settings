@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SkeeBall.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SkeeBallNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="ModernNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;SkeeBall&lt;/string&gt;
@@ -12,7 +12,7 @@
   &lt;string&gt;SkeeBall&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="SkeeBallScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="ModernScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;0&lt;/string&gt;
@@ -22,7 +22,7 @@
   &lt;string&gt;0&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="Game310Names" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="ThreeTenNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;SkeeBall&lt;/string&gt;
@@ -32,14 +32,14 @@
   &lt;string&gt;SkeeBall&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="Game310Scores" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="ThreeTenScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;0&lt;/string&gt;
-  &lt;string&gt;0&lt;/string&gt;
-  &lt;string&gt;0&lt;/string&gt;
-  &lt;string&gt;0&lt;/string&gt;
-  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="ClassicNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
@@ -62,7 +62,7 @@
   &lt;string&gt;0&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="FlashBallNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="MultiNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;SkeeBall&lt;/string&gt;
@@ -72,7 +72,7 @@
   &lt;string&gt;SkeeBall&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="FlashBallScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="MultiScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;0&lt;/string&gt;
@@ -85,22 +85,60 @@
     <Setting Name="PlayerList" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Nick&lt;/string&gt;
-  &lt;string&gt;Kat&lt;/string&gt;
-  &lt;string&gt;Ben&lt;/string&gt;
-  &lt;string&gt;Erin&lt;/string&gt;
-  &lt;string&gt;Kush&lt;/string&gt;
-  &lt;string&gt;Neetu&lt;/string&gt;
-  &lt;string&gt;Wayne&lt;/string&gt;
-  &lt;string&gt;Becky&lt;/string&gt;
-  &lt;string&gt;Nat&lt;/string&gt;
-  &lt;string&gt;Jamie&lt;/string&gt;
-  &lt;string&gt;Dom&lt;/string&gt;
-  &lt;string&gt;Laurie&lt;/string&gt;
-  &lt;string&gt;Skank&lt;/string&gt;
-  &lt;string&gt;Steve&lt;/string&gt;
-  &lt;string&gt;Create New&lt;/string&gt;
-  &lt;string&gt;Melanie&lt;/string&gt;
+  &lt;string&gt;NICK&lt;/string&gt;
+  &lt;string&gt;KAT&lt;/string&gt;
+  &lt;string&gt;BEN&lt;/string&gt;
+  &lt;string&gt;KUSH&lt;/string&gt;
+  &lt;string&gt;WAYNE&lt;/string&gt;
+  &lt;string&gt;BECKY&lt;/string&gt;
+  &lt;string&gt;NAT&lt;/string&gt;
+  &lt;string&gt;JAMIE&lt;/string&gt;
+  &lt;string&gt;DOM&lt;/string&gt;
+  &lt;string&gt;LAURIE&lt;/string&gt;
+  &lt;string&gt;SKANK&lt;/string&gt;
+  &lt;string&gt;STEVE&lt;/string&gt;
+  &lt;string&gt;MELANIE&lt;/string&gt;
+  &lt;string&gt;CREATE NEW&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="CricketNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="CricketScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="FiveTenNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+  &lt;string&gt;SkeeBall&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="FiveTenScores" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
+  &lt;string&gt;99&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>

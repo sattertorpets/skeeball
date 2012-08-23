@@ -1,15 +1,32 @@
 ﻿<Window x:Class="SkeeBall.GameMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GameMenu" Height="300" Width="300" FocusManager.FocusedElement="{Binding ElementName=label1}" Topmost="False">
-    <StackPanel>
-        <StackPanel HorizontalAlignment="Center" Margin="39,0,39,39" Name="stackPanel1" VerticalAlignment="Stretch" Width="200" >
-            <Button Content="Skee Ball" Height="40" Name="label1" FontSize="24" HorizontalContentAlignment="Center" Click="label1_Click" />
-            <Button Content="Classic" Height="40" Name="label2" FontSize="24" HorizontalContentAlignment="Center" Click="label2_Click" />
-            <Button Content="310" Height="40" Name="label3" FontSize="24" HorizontalContentAlignment="Center" />
-            <Button Content="Flash Ball" Height="40" Name="label4" FontSize="24" HorizontalContentAlignment="Center" />
-        </StackPanel>
-        
-        <Label Content="Game Description" Height="28" Name="lblGameDescript" HorizontalContentAlignment="Center" />
+        Title="GameMenu" Height="600" Width="800" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Black"
+        FocusManager.FocusedElement="{Binding ElementName=btnClassic}">
+
+    <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="stackPanel1" VerticalAlignment="Stretch" Height="550" Width="400" >
+        <StackPanel.Resources>
+            <Style x:Key="BtnFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="2" StrokeThickness="5" Stroke="Red" StrokeDashArray="2 1"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="45" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="FocusVisualStyle" Value="{StaticResource BtnFocusVisual}" />
+            </Style>
+        </StackPanel.Resources>
+        <Button Content="Classic"   Name="btnClassic"   Click="btnClassic_Click"    GotFocus="btnClassic_GotFocus" />
+        <Button Content="Skee Ball" Name="btnModern"    Click="btnModern_Click"     GotFocus="btnModern_GotFocus" />
+        <Button Content="310"       Name="btn310"       Click="btn310_Click"        GotFocus="btn310_GotFocus"  />
+        <Button Content="510"       Name="btn510"       Click="btn510_Click"        GotFocus="btn510_GotFocus"  />
+        <Button Content="Multi Ball" Name="btnMultiBall" Click="btnMultiBall_Click" GotFocus="btnMultiBall_GotFocus" />
+        <Button Content="Cricket (2P)"   Name="btnCricket"   Click="btnCricket_Click"    GotFocus="btnCricket_GotFocus" />
+        <TextBlock Text="Game Description" Name="txtGameDescript" FontSize="22" Padding="5,15,5,5" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" />
     </StackPanel>
 </Window>

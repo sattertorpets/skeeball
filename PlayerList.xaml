@@ -1,14 +1,28 @@
 ﻿<Window x:Class="SkeeBall.PlayerList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PlayerList" Height="500" Width="300" WindowStartupLocation="CenterScreen">
+        Title="PlayerList" Height="525" Width="350" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="BtnFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="0" StrokeThickness="4" Stroke="Red" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <ItemsControl x:Name="nameList" ItemsSource="{Binding PlayerNames}" IsEnabled="True">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Height="40" FontSize="24" HorizontalContentAlignment="Center" Content="{Binding}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ItemsControl x:Name="nameList" ItemsSource="{Binding PlayerNames}" IsEnabled="True" Focusable="False" IsTabStop="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Height="50" FontSize="40" HorizontalContentAlignment="Center" Content="{Binding}" Click="Button_Click" FocusVisualStyle="{StaticResource BtnFocusVisual}" FontWeight="Bold" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>
