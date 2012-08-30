@@ -15,6 +15,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>D:\Nick\Desktop\SkeeBall\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,12 +27,11 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -82,14 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MultiplierWindow.xaml.cs">
-      <DependentUpon>MultiplierWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cricket2P.xaml.cs">
-      <DependentUpon>Cricket2P.xaml</DependentUpon>
+    <Compile Include="GameOver.xaml.cs">
+      <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
     <Compile Include="LEDWiz.cs" />
     <Compile Include="Models\BaseGame.cs" />
+    <Compile Include="Models\TicTacToe.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Score.cs" />
     <Compile Include="Navigation.xaml.cs">
@@ -112,7 +110,10 @@
     <Compile Include="CricketWindow.xaml.cs">
       <DependentUpon>CricketWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MultiplierWindow.xaml">
+    <Compile Include="TicTacToe.xaml.cs">
+      <DependentUpon>TicTacToe.xaml</DependentUpon>
+    </Compile>
+    <Page Include="GameOver.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -128,10 +129,6 @@
       <DependentUpon>SoloGameWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Cricket2P.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Navigation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CricketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TicTacToe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +225,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sounds\Sound50.wav" />
     <Resource Include="Images\0X.gif" />
     <Resource Include="Images\1X.gif" />
     <Resource Include="Images\2X.gif" />
@@ -232,11 +234,10 @@
     <Resource Include="Images\1Ball.png" />
     <Resource Include="Images\2Ball.png" />
     <Resource Include="Images\3ball.png" />
-    <Content Include="Sounds\Sound10.mp3" />
-    <Content Include="Sounds\Sound20.mp3" />
-    <Content Include="Sounds\Sound30.mp3" />
-    <Content Include="Sounds\Sound40.mp3" />
-    <Content Include="Sounds\Sound50.mp3" />
+    <Content Include="Sounds\Sound10.wav" />
+    <Content Include="Sounds\Sound20.wav" />
+    <Content Include="Sounds\Sound30.wav" />
+    <Content Include="Sounds\Sound40.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

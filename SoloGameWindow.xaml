@@ -28,7 +28,7 @@
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="2.6*" />
             <RowDefinition />
@@ -36,11 +36,11 @@
         <Grid Background="Silver" />
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Name="colMultiplier" Width="*"/>
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2.9*"/>
                     <RowDefinition Height=".5*"/>
@@ -49,14 +49,14 @@
                 <ListBox Grid.Row="0" Name="keyList" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
                 <Label Grid.Row="1" Name="lblMultiplier" Content="Multiplier" />
                 <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Name="txtMultiplier" Grid.Column="0"
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="txtMultiplier" Grid.Column="0"
                            Style="{StaticResource scoreStyle}"
                            Text="{Binding Player1.Multiplier}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-                    <Label Grid.Column="1" Content="x" FontSize="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,5" Foreground="Red"/>
+                    <Label Name="lblX" Grid.Column="1" Content="x" FontSize="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,5" Foreground="Red"/>
                 </Grid>
             </Grid>
             <TextBlock Grid.Column="1" Name="scoreBox"
@@ -64,14 +64,15 @@
                        Style="{StaticResource scoreStyle}"
                        Text="{Binding Player1.Score,
                                       StringFormat=\{0:000\}}" />
-            
+
         </Grid>
 
         <Grid Grid.Row="1" Background="Black">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Name="colHighScore" Width="*"/>
+                <ColumnDefinition Name="colMultiTarget" Width="0*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
@@ -87,28 +88,13 @@
             </Grid>
 
             <Grid Grid.Column="1" Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="3.5*" />
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="High Scores" FontSize="22" Padding="5,2" />
-                <ListView x:Name="lstHighScores" Grid.Row="1" ItemsSource="{Binding Path=HighScores}" FontSize="18" FontFamily="Consolas">
+
+                <ListView x:Name="lstHighScores" Grid.Row="1" ItemsSource="{Binding Path=HighScores}" 
+                          FontSize="22" FontFamily="Consolas" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource hideHeaderStyle}">
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock  Text="{Binding Path=Name}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock  Text="{Binding Path=Value}" TextAlignment="Right" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            <GridViewColumn Width="170" DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=Value}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -124,12 +110,17 @@
                            Grid.Row="1"
                            Style="{StaticResource scoreStyle}"
                            Text="{Binding HighestScore}" />
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
                 <Label Grid.Row="0" Name="lblMultiTarget" Content="Multiplier Target" />
                 <TextBlock Name="txtMultiTarget"
                            Grid.Row="1"
                            Style="{StaticResource scoreStyle}"
                            Text="{Binding Player1.MultiTarget}" />
-
             </Grid>
         </Grid>
 

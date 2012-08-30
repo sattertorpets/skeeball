@@ -4,8 +4,13 @@
         Title="Create New Player" Height="400" Width="600"
         FocusManager.FocusedElement="{Binding ElementName=lbl1}" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock Text="Create A New Player" Height="80" Name="lblTitle" VerticalAlignment="Top" FontSize="45" TextAlignment="Center" />
-        <StackPanel Name="LetterContainer" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Create A New Player" Height="80" Name="lblTitle" VerticalAlignment="Top" FontSize="45" TextAlignment="Center" />
+        <StackPanel Grid.Row="1" Name="LetterContainer" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style x:Key="MyFocusVisual">
                     <Setter Property="Control.Template">
@@ -44,6 +49,6 @@
             <Label Tag="11"></Label>
             <Label Tag="12"></Label>
         </StackPanel>
-        <TextBlock Text="Please enter your name." Height="60" Name="lblInstructions" VerticalAlignment="Bottom" FontSize="36" TextWrapping="Wrap" TextAlignment="Center" />
+        <TextBlock Grid.Row="2" Text="Please enter your name.  Yellow selects, red moves back, select >> to end." Name="lblInstructions" FontSize="36" TextWrapping="Wrap" TextAlignment="Center" />
     </Grid>
 </Window>

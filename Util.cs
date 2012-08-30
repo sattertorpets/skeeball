@@ -7,6 +7,9 @@ using SkeeBall.Models;
 using System.Collections.Specialized;
 using System.Collections;
 using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Data;
+using System.Windows;
 
 namespace SkeeBall
 {
@@ -16,14 +19,14 @@ namespace SkeeBall
         public static Dictionary<Key, KeyName> KeyMap = new Dictionary<System.Windows.Input.Key, KeyName>()
         {
             {Key.A, KeyName.Hole10},
-            {Key.B, KeyName.Hole20},
-            {Key.C, KeyName.Hole30},
-            {Key.D, KeyName.Hole40},
-            {Key.E, KeyName.Hole50},
-            {Key.F, KeyName.HoleL100},
-            {Key.G, KeyName.HoleR100},
+            {Key.S, KeyName.Hole20},
+            {Key.Q, KeyName.Hole30},
+            {Key.W, KeyName.Hole40},
+            {Key.I, KeyName.Hole50},
+            {Key.K, KeyName.HoleL100},
+            {Key.J, KeyName.HoleR100},
             {Key.Space, KeyName.Select},
-            {Key.K, KeyName.Back},
+            {Key.V, KeyName.Back},
             {Key.L, KeyName.Gutter},
             {Key.Up, KeyName.Up},
             {Key.Down, KeyName.Down}
@@ -120,6 +123,88 @@ namespace SkeeBall
                     }
                 }
             }
+        }
+    }
+
+    public class IntToVisibilityConverter : MarkupExtension, IValueConverter
+    {
+        private static IntToVisibilityConverter _converter;
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+                return Visibility.Visible;
+            if ((int)value == 0)
+                return Visibility.Collapsed;
+            else
+                return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value; // convert and return something (if needed)
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (_converter == null)
+                _converter = new IntToVisibilityConverter();
+            return _converter;
+        }
+        // usage: <TextBlock Visibility="{Binding SomeInt, Converter={src:IntToVisibilityConverter}}" />
+    }
+
+    public class BoolToGridConverter : MarkupExtension, IValueConverter
+    {
+        private static BoolToGridConverter _converter;
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+                return "0*";
+            if ((bool)value == true)
+                return "1*";
+            else
+                return "0*";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value; // convert and return something (if needed)
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (_converter == null)
+                _converter = new BoolToGridConverter();
+            return _converter;
+        }
+    }
+
+    public class InvBoolToGridConverter : MarkupExtension, IValueConverter
+    {
+        private static InvBoolToGridConverter _converter;
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+                return "0*";
+            if ((bool)value == true)
+                return "0*";
+            else
+                return "1*";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value; // convert and return something (if needed)
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (_converter == null)
+                _converter = new InvBoolToGridConverter();
+            return _converter;
         }
     }
 }

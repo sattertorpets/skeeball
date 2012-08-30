@@ -42,7 +42,7 @@ namespace SkeeBall.Models
         }
         // Using a DependencyProperty as the backing store for LastThrow.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastThrowProperty =
-            DependencyProperty.Register("LastThrow", typeof(int), typeof(Player), new UIPropertyMetadata(0));
+            DependencyProperty.Register("LastThrow", typeof(int), typeof(Player), new UIPropertyMetadata(-1));
 
         public int ThisThrow { get; set; }
 
@@ -100,24 +100,20 @@ namespace SkeeBall.Models
         public static readonly DependencyProperty num30sProperty =
             DependencyProperty.Register("Num30s", typeof(int), typeof(Player), new UIPropertyMetadata(0));
 
-
         public int Num20s
         {
             get { return (int)GetValue(num20sProperty); }
             set { SetValue(num20sProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for num20s.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty num20sProperty =
             DependencyProperty.Register("Num20s", typeof(int), typeof(Player), new UIPropertyMetadata(0));
-
 
         public int Num10s
         {
             get { return (int)GetValue(num10sProperty); }
             set { SetValue(num10sProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for num10s.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty num10sProperty =
             DependencyProperty.Register("Num10s", typeof(int), typeof(Player), new UIPropertyMetadata(0));
@@ -126,5 +122,7 @@ namespace SkeeBall.Models
         {
             get { return Num100s + Num50s + Num40s + Num30s + Num20s + Num10s; }
         }
+
+        public List<int> BallHistory { get; set; }
     }
 }

@@ -24,19 +24,18 @@ namespace SkeeBall
         public GameMenu()
         {
             InitializeComponent();
-            //btnClassic.Focus();
         }
 
         private void btnClassic_Click(object sender, RoutedEventArgs e)
         {
-            SoloGameWindow game = new SoloGameWindow("Classic", false);
+            SoloGameWindow game = new SoloGameWindow("Classic");
             game.Owner = this;
             game.ShowDialog();
         }
 
         private void btnClassic_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtGameDescript.Text = "Classic Skeeball, 9 balls, no 100s.";
+            txtGameDescript.Text = "Classic Skeeball, 9 balls, no 100s.  In all menus, yellow button is Select/New Game and red button is Back";
         }
 
         private void btnCricket_Click(object sender, RoutedEventArgs e)
@@ -48,12 +47,12 @@ namespace SkeeBall
 
         private void btnCricket_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtGameDescript.Text = "Solo or Multiplayer Cricket, like in darts.";
+            txtGameDescript.Text = "Solo or Multiplayer Cricket, similar to darts.  In game, press up to add a player, down to remove a player.  Hit 2 50s in a row to get a 100.";
         }
 
         private void btnModern_Click(object sender, RoutedEventArgs e)
         {
-            SoloGameWindow game = new SoloGameWindow("Modern", true);
+            SoloGameWindow game = new SoloGameWindow("Modern");
             game.Owner = this;
             game.ShowDialog();
         }
@@ -70,26 +69,26 @@ namespace SkeeBall
 
         private void btnMultiBall_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtGameDescript.Text = "Build up a multiplier for huge scores.";
+            txtGameDescript.Text = "Build up a multiplier for huge scores.  In game, hit the multiplier target to increase your multiplier.  Multiplier resets on throws less than 30.";
         }
 
         private void btn310_Click(object sender, RoutedEventArgs e)
         {
-            SoloGameWindow game = new SoloGameWindow("ThreeTen", true);
+            SoloGameWindow game = new SoloGameWindow("ThreeTen");
             game.Owner = this;
             game.ShowDialog();
         }
 
         private void btnMultiBall_Click(object sender, RoutedEventArgs e)
         {
-            SoloGameWindow game = new SoloGameWindow("Multi", true);
+            SoloGameWindow game = new SoloGameWindow("Multi");
             game.Owner = this;
             game.ShowDialog();
         }
 
         private void btn510_Click(object sender, RoutedEventArgs e)
         {
-            SoloGameWindow game = new SoloGameWindow("FiveTen", true);
+            SoloGameWindow game = new SoloGameWindow("FiveTen");
             game.Owner = this;
             game.ShowDialog();
         }

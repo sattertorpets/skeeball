@@ -84,8 +84,9 @@ namespace SkeeBall
                             {
                                 EnteredName += label.Content.ToString();
                             }
-                            EnteredName = EnteredName.Remove(currentLabel - 1);   //remove >> and trailing spaces
-                            EnteredName.Trim();
+                            if (thisLabel.Content.ToString()[0].Equals(endChar))
+                                EnteredName = EnteredName.Remove(currentLabel - 1);   //remove >> 
+                            EnteredName.Trim();   // remove spaces
                             if (PlayerNames.Contains(EnteredName, StringComparer.OrdinalIgnoreCase))  //if this name Exists give a warning, otherwise return the name
                             {
                                 EnteredName = "";
