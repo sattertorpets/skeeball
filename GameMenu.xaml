@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="GameMenu" Height="600" Width="800" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Black"
         FocusManager.FocusedElement="{Binding ElementName=btnClassic}">
-
-    <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="stackPanel1" VerticalAlignment="Stretch" Height="550" Width="400" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Name="stackPanel1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
         <StackPanel.Resources>
             <Style x:Key="BtnFocusVisual">
                 <Setter Property="Control.Template">
@@ -16,7 +20,7 @@
                 </Setter>
             </Style>
             <Style TargetType="Button">
-                <Setter Property="FontSize" Value="45" />
+                <Setter Property="FontSize" Value="40" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                 <Setter Property="FocusVisualStyle" Value="{StaticResource BtnFocusVisual}" />
             </Style>
@@ -27,6 +31,10 @@
         <Button Content="510"       Name="btn510"       Click="btn510_Click"        GotFocus="btn510_GotFocus"  />
         <Button Content="Multi Ball" Name="btnMultiBall" Click="btnMultiBall_Click" GotFocus="btnMultiBall_GotFocus" />
         <Button Content="Cricket (2P)"   Name="btnCricket"   Click="btnCricket_Click"    GotFocus="btnCricket_GotFocus" />
-        <TextBlock Text="Game Description" Name="txtGameDescript" FontSize="22" Padding="5,15,5,5" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" />
+        <Button Content="Tic Tac Three"   Name="btnTicTac3"   Click="btnTicTac3_Click"    GotFocus="btnTicTac3_GotFocus" />
+        <Button Content="Tic Tac Skee"   Name="btnTicTacSkee"   Click="btnTicTacSkee_Click"    GotFocus="btnTicTacSkee_GotFocus" />
     </StackPanel>
+        <TextBlock Grid.Column="1" Text="Game Description" Name="txtGameDescript" FontSize="30" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="10,25,10,5" />
+    </Grid>
+    
 </Window>

@@ -8,6 +8,13 @@ namespace SkeeBall.Models
 {
     public class Player : DependencyObject
     {
+        public int ThisThrow { get; set; }
+        public List<int> BallHistory { get; set; }
+        public int TargetsComplete
+        {
+            get { return Num100s + Num50s + Num40s + Num30s + Num20s + Num10s; }
+        }
+        
         public int Score
         {
             get { return (int)GetValue(ScoreProperty); }
@@ -43,8 +50,6 @@ namespace SkeeBall.Models
         // Using a DependencyProperty as the backing store for LastThrow.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastThrowProperty =
             DependencyProperty.Register("LastThrow", typeof(int), typeof(Player), new UIPropertyMetadata(-1));
-
-        public int ThisThrow { get; set; }
 
         public int Multiplier
         {
@@ -118,11 +123,23 @@ namespace SkeeBall.Models
         public static readonly DependencyProperty num10sProperty =
             DependencyProperty.Register("Num10s", typeof(int), typeof(Player), new UIPropertyMetadata(0));
 
-        public int TargetsComplete
+        public int Throw1
         {
-            get { return Num100s + Num50s + Num40s + Num30s + Num20s + Num10s; }
+            get { return (int)GetValue(Throw1Property); }
+            set { SetValue(Throw1Property, value); }
         }
+        // Using a DependencyProperty as the backing store for Throw1.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty Throw1Property =
+            DependencyProperty.Register("Throw1", typeof(int), typeof(Player), new UIPropertyMetadata(-1));
 
-        public List<int> BallHistory { get; set; }
+        public int Throw2
+        {
+            get { return (int)GetValue(Throw2Property); }
+            set { SetValue(Throw2Property, value); }
+        }
+        // Using a DependencyProperty as the backing store for Throw2.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty Throw2Property =
+            DependencyProperty.Register("Throw2", typeof(int), typeof(Player), new UIPropertyMetadata(-1));
+
     }
 }

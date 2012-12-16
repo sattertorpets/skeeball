@@ -28,51 +28,6 @@ namespace SkeeBall
             {
                 switch (Util.KeyMap[e.Key])
                 {
-                    //case Util.KeyName.Hole10:
-                    //    Game.Last10 = e.Timestamp;
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 10;
-                    //    //wplayer.URL = Path.GetFullPath(@"Sounds\Sound10.mp3");
-                    //    //wplayer.controls.play();
-                    //    break;
-                    //case Util.KeyName.Hole20:
-                    //    Game.Last10 = e.Timestamp;
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 20;
-                    //    //wplayer.URL = Path.GetFullPath(@"Sounds\Sound20.mp3");
-                    //    //wplayer.controls.play();
-                    //    break;
-                    //case Util.KeyName.Hole30:
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 30;
-                    //    //wplayer.URL = Path.GetFullPath(@"Sounds\Sound30.mp3");
-                    //    //wplayer.controls.play();
-                    //    break;
-                    //case Util.KeyName.Hole40:
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 40;
-                    //    //wplayer.URL = Path.GetFullPath(@"Sounds\Sound40.mp3");
-                    //    //wplayer.controls.play();
-                    //    break;
-                    //case Util.KeyName.Hole50:
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 50;
-                    //    //wplayer.URL = Path.GetFullPath(@"Sounds\Sound50.mp3");
-                    //    //wplayer.controls.play();
-                    //    break;
-                    //case Util.KeyName.HoleL100: // Left 100
-                    //case Util.KeyName.HoleR100: // Right 100
-                    //    if (IsDuplicateBall(e.Timestamp, 450)) { BallTimestamp = e.Timestamp; return; }
-                    //    Game.ActivePlayer.ThisThrow = 100;  //disabled for Classic, enabled for Modern
-                    //    break;
-                    //case Util.KeyName.Gutter:
-                    //    //if (IsDuplicateBall(e.Timestamp, 200) && Game.ActivePlayer.LastThrow == 0) return;  //Switch bounce protection
-                    //    if (e.Timestamp > (Game.Last10 + 2600))   //If its been more than 2.6s since the 10 switch was tripped, this was a gutter
-                    //    {
-                    //        Game.ActivePlayer.ThisThrow = 0;
-                    //    }
-                    //    else return;        //If it wasn't, then ignore it
-                    //    break;
                     case Util.KeyName.Select: //Select Button
                         NewGame(Game.GameName, Game.TwoPlayer);
                         return;
@@ -109,15 +64,7 @@ namespace SkeeBall
             }
 
         }
-        //private bool IsDuplicateBall(int time, int timeout)
-        //{
-        //    if ((time - BallTimestamp) <= timeout)
-        //    {
-        //        Console.WriteLine("Double switch detected");
-        //        return true;
-        //    }
-        //    return false;
-        //}
+
         private void UpdateScores()
         {
             Game.ActivePlayer.BallsPlayed += 1;
@@ -187,7 +134,6 @@ namespace SkeeBall
             {
                 SwitchPlayers();
             }
-
         }
 
         private void NewGame(string gameName, bool twoPlayer)
@@ -267,25 +213,5 @@ namespace SkeeBall
             else
                 NewRound();
         }
-
-        //private void GameOverGolf(int balls)
-        //{
-        //    Game.IsOver = true;
-        //    int numHighScores = Game.HighScores.Count - 1;
-        //    if (Game.HighScores.ElementAt(numHighScores).Value > balls)  //if smaller than the last item in the high score list
-        //    {
-        //        Game.HighScores.RemoveAt(numHighScores);  //remove last score
-        //        Score newHighScore = new Score();
-        //        PlayerList playerListWindow = new PlayerList();
-        //        playerListWindow.Owner = this;
-        //        playerListWindow.ShowDialog();
-        //        newHighScore.Name = playerListWindow.SelectedPlayer;
-        //        newHighScore.Value = balls;
-        //        Game.HighScores.Add(newHighScore);     //add new score at the bottom of the list
-        //        Game.HighScores.ReverseBubbleGolfSort();
-
-        //        Util.WriteScores(Game.HighScores, _gameName + "Names", _gameName + "Scores");
-        //    }
-        //}
     }
 }

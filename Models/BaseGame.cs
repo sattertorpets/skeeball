@@ -17,11 +17,17 @@ namespace SkeeBall.Models
         public bool IsOver { get; set; }
         public int BallTimestamp { get; set; }
         public bool Count100s { get; set; }
+        public Player OtherPlayer { get; set; }
+
         private SoundPlayer wav50 = new SoundPlayer(@"Sounds\Sound50.wav");
         private SoundPlayer wav40 = new SoundPlayer(@"Sounds\Sound40.wav");
         private SoundPlayer wav30 = new SoundPlayer(@"Sounds\Sound30.wav");
         private SoundPlayer wav20 = new SoundPlayer(@"Sounds\Sound20.wav");
         private SoundPlayer wav10 = new SoundPlayer(@"Sounds\Sound10.wav");
+        //Used only for tic tac toe, initializes to 0
+        public int[,] TTT3Grid = new int[3,3];
+        public int[,] TTT5Grid = new int[5, 5];
+
 
         public string GameName
         {
@@ -48,7 +54,7 @@ namespace SkeeBall.Models
         }
         // Using a DependencyProperty as the backing store for Player1.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty Player1Property =
-            DependencyProperty.Register("Player1", typeof(Player), typeof(BaseGame), new UIPropertyMetadata(null));  //using null doesn't work right
+            DependencyProperty.Register("Player1", typeof(Player), typeof(BaseGame), new UIPropertyMetadata(null));  
 
         public Player Player2
         {
@@ -68,16 +74,6 @@ namespace SkeeBall.Models
         public static readonly DependencyProperty ActivePlayerProperty =
             DependencyProperty.Register("ActivePlayer", typeof(Player), typeof(BaseGame), new UIPropertyMetadata(null));
 
-        public Player OtherPlayer
-        {
-            get { return (Player)GetValue(OtherPlayerProperty); }
-            set { SetValue(OtherPlayerProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for OtherPlayer.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty OtherPlayerProperty =
-            DependencyProperty.Register("OtherPlayer", typeof(Player), typeof(BaseGame), new UIPropertyMetadata(null));
-
         public bool TwoPlayer
         {
             get { return (bool)GetValue(TwoPlayerProperty); }
@@ -96,8 +92,17 @@ namespace SkeeBall.Models
         public static readonly DependencyProperty HasMultiplierProperty =
             DependencyProperty.Register("HasMultiplier", typeof(bool), typeof(BaseGame), new UIPropertyMetadata(false));
 
+        public int ActvPlyrNum
+        {
+            get { return (int)GetValue(ActvPlyrNumProperty); }
+            set { SetValue(ActvPlyrNumProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for ActvPlyrNum.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ActvPlyrNumProperty =
+            DependencyProperty.Register("ActvPlyrNum", typeof(int), typeof(BaseGame), new UIPropertyMetadata(1));
+
         /// <summary>
-        /// Do NOT call this outside a Try/Catch block, it does not handle its KeyNotFoundExceptions
+        /// Do NOT call this outside a Try/Catch block, it does not handle its KeyNotFoundExceptions.  Returns true if the key was a valid scoring key.
         /// </summary>
         public bool ScoringKeyHandler(KeyEventArgs e)
         {
@@ -243,6 +248,22 @@ namespace SkeeBall.Models
                 HighScores.ReverseBubbleGolfSort();
 
                 Util.WriteScores(HighScores, GameName + "Names", GameName + "Scores");
+            }
+        }
+
+        public void SwitchPlayer()
+        {
+            if (ActvPlyrNum == 1)
+            {
+                ActivePlayer = Player2;
+                OtherPlayer = Player1;
+                ActvPlyrNum = 2;
+            }
+            else
+            {
+                ActivePlayer = Player1;
+                OtherPlayer = Player2;
+                ActvPlyrNum = 1;
             }
         }
         //public BaseGame()

@@ -98,5 +98,29 @@ namespace SkeeBall
             txtGameDescript.Text = "Get to exactly 510 in the fewest throws possible.";
         }
 
+        private void btnTicTac3_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtGameDescript.Text = "1st throw determines the row, 2nd throw determines the column.  Only 30, 40 and 50 score.  (2P Only)";
+        }
+
+        private void btnTicTac3_Click(object sender, RoutedEventArgs e)
+        {
+            TicTac3 game = new TicTac3("TicTac3");
+            game.Owner = this;
+            game.ShowDialog();
+        }
+
+        private void btnTicTacSkee_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtGameDescript.Text = "Get 4 in a row to win.  1st throw determines the row, 2nd throw determines the column.  10 through 50 scores.  (2P Only)";
+        }
+
+        private void btnTicTacSkee_Click(object sender, RoutedEventArgs e)
+        {
+            TicTacSkee game = new TicTacSkee("TicTacSkee");
+            game.Owner = this;
+            game.ShowDialog();
+        }
+
     }
 }

@@ -278,5 +278,81 @@ namespace SkeeBall.Properties {
                 this["FiveTenScores"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TicTac3Names {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TicTac3Names"]));
+            }
+            set {
+                this["TicTac3Names"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TicTac3Scores {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TicTac3Scores"]));
+            }
+            set {
+                this["TicTac3Scores"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+  <string>Skeeball</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TicTacSkeeNames {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TicTacSkeeNames"]));
+            }
+            set {
+                this["TicTacSkeeNames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+  <string>99</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TicTacSkeeScores {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TicTacSkeeScores"]));
+            }
+            set {
+                this["TicTacSkeeScores"] = value;
+            }
+        }
     }
 }
