@@ -9,32 +9,34 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Name="stackPanel1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
-        <StackPanel.Resources>
-            <Style x:Key="BtnFocusVisual">
-                <Setter Property="Control.Template">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Rectangle Margin="2" StrokeThickness="5" Stroke="Red" StrokeDashArray="2 1"/>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="FontSize" Value="40" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="FocusVisualStyle" Value="{StaticResource BtnFocusVisual}" />
-            </Style>
-        </StackPanel.Resources>
-        <Button Content="Classic"   Name="btnClassic"   Click="btnClassic_Click"    GotFocus="btnClassic_GotFocus" />
-        <Button Content="Skee Ball" Name="btnModern"    Click="btnModern_Click"     GotFocus="btnModern_GotFocus" />
-        <Button Content="310"       Name="btn310"       Click="btn310_Click"        GotFocus="btn310_GotFocus"  />
-        <Button Content="510"       Name="btn510"       Click="btn510_Click"        GotFocus="btn510_GotFocus"  />
-        <Button Content="Multi Ball" Name="btnMultiBall" Click="btnMultiBall_Click" GotFocus="btnMultiBall_GotFocus" />
-        <Button Content="Cricket (2P)"   Name="btnCricket"   Click="btnCricket_Click"    GotFocus="btnCricket_GotFocus" />
-        <Button Content="Tic Tac Three"   Name="btnTicTac3"   Click="btnTicTac3_Click"    GotFocus="btnTicTac3_GotFocus" />
-        <Button Content="Tic Tac Skee"   Name="btnTicTacSkee"   Click="btnTicTacSkee_Click"    GotFocus="btnTicTacSkee_GotFocus" />
-    </StackPanel>
+            <StackPanel.Resources>
+                <Style x:Key="BtnFocusVisual">
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle Margin="2" StrokeThickness="5" Stroke="Red" StrokeDashArray="2 1"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="40" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource BtnFocusVisual}" />
+                    <!--<EventSetter Event="Click" Handler="btn_Click" />
+                    <EventSetter Event="GotFocus" Handler="btn_GotFocus" />-->
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Classic"   Name="btnClassic"   Click="btnClassic_Click"    GotFocus="btnClassic_GotFocus" />
+            <Button Content="Skee Ball" Name="btnModern"    Click="btnModern_Click"     GotFocus="btnModern_GotFocus" />
+            <Button Content="310"       Name="btn310"       Click="btn310_Click"        GotFocus="btn310_GotFocus"  />
+            <Button Content="510"       Name="btn510"       Click="btn510_Click"        GotFocus="btn510_GotFocus"  />
+            <Button Content="Multi Ball" Name="btnMultiBall" Click="btnMultiBall_Click" GotFocus="btnMultiBall_GotFocus" />
+            <Button Content="Cricket"   Name="btnCricket"   Click="btnCricket_Click"    GotFocus="btnCricket_GotFocus" />
+            <Button Content="Tic Tac Three"   Name="btnTicTac3"   Click="btnTicTac3_Click"    GotFocus="btnTicTac3_GotFocus" />
+            <Button Content="Tic Tac Skee"   Name="btnTicTacSkee"   Click="btnTicTacSkee_Click"    GotFocus="btnTicTacSkee_GotFocus" />
+        </StackPanel>
         <TextBlock Grid.Column="1" Text="Game Description" Name="txtGameDescript" FontSize="30" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="10,25,10,5" />
     </Grid>
-    
+
 </Window>

@@ -12,12 +12,17 @@ namespace SkeeBall.Models
     public class BaseGame : DependencyObject
     {
         public ObservableCollection<Score> HighScores { get; set; }
+        public ObservableCollection<Score> PersonalHighScores { get; set; }
+        private List<Score> Scores;
+
         public int Last10 { get; set; }
         public System.Windows.Input.Key LastKey { get; set; }
         public bool IsOver { get; set; }
         public int BallTimestamp { get; set; }
         public bool Count100s { get; set; }
         public Player OtherPlayer { get; set; }
+        private int BallsCounted = 0;
+        private int NumHighScoresToDisplay = 20;
 
         private SoundPlayer wav50 = new SoundPlayer(@"Sounds\Sound50.wav");
         private SoundPlayer wav40 = new SoundPlayer(@"Sounds\Sound40.wav");
@@ -159,10 +164,18 @@ namespace SkeeBall.Models
                         ActivePlayer.ThisThrow = 10;
                     break;
                 case Util.KeyName.Gutter:
-                    if (e.Timestamp > (Last10 + 2600))   //If its been more than 2.6s since the 10 switch was tripped, this was a gutter
+                    //if (e.Timestamp > (Last10 + 2600))   //If its been more than 2.6s since the 10 switch was tripped, this was a gutter
+                    //    ActivePlayer.ThisThrow = 0;
+                    //else
+                    //    return false;        //If it wasn't, then ignore it
+                    BallsCounted--;
+                    if (BallsCounted < 0)   //If we've counted more balls than scoring balls, this was a gutter
+                    {
                         ActivePlayer.ThisThrow = 0;
+                        BallsCounted = 0;
+                    }
                     else
-                        return false;        //If it wasn't, then ignore it
+                        return false;
                     break;
                 default:
                     return false;
@@ -178,6 +191,7 @@ namespace SkeeBall.Models
                 BallTimestamp = time;
                 return true;
             }
+            BallsCounted++;
             return false;
         }
 
@@ -189,6 +203,11 @@ namespace SkeeBall.Models
             OtherPlayer = Player2;
             Last10 = 0;
             IsOver = false;
+            BallTimestamp = 0;
+            ActivePlayer.LastThrow = -1;
+            ActivePlayer.ThisThrow = -1;
+            GameName = gameName; 
+            
             if (gameName.ToLower().Equals("multi"))
             {
                 HasMultiplier = true;
@@ -198,57 +217,119 @@ namespace SkeeBall.Models
                 Count100s = false;
             else
                 Count100s = true;
-            HighScores = Util.LoadScores(gameName + "Names", gameName + "Scores");
-            HighestScore = HighScores.First<Score>().Value;
-            BallTimestamp = 0;
-            ActivePlayer.LastThrow = -1;
-            ActivePlayer.ThisThrow = -1;
-            GameName = gameName;
+            
+            Scores = Util.LoadList<Score>(gameName + ".xml");
+
+            HighScores = new ObservableCollection<Score>();
+            foreach (Score s in Scores.Take(NumHighScoresToDisplay))
+            {
+                HighScores.Add(s);
+            }
+
+            if (HighScores.Count < 1)
+                HighestScore = 0;
+            else
+                HighestScore = HighScores.First<Score>().Value;
+            PersonalHighScores = new ObservableCollection<Score>();
         }
+        
         public void IncrementMultiTarget()
         {
             ActivePlayer.MultiTarget += 10;
             if (ActivePlayer.MultiTarget == 60) ActivePlayer.MultiTarget = 100;
         }
 
-        public void GameOver(int score, Window gameWindow)
+        public bool GameOver(int score, Window gameWindow)
         {
             IsOver = true;
-            int numHighScores = HighScores.Count - 1;
-            if (HighScores.ElementAt(numHighScores).Value < score)  //if higher than the last item in the high score list
-            {
-                HighScores.RemoveAt(numHighScores);  //remove last score
-                Score newHighScore = new Score();
-                PlayerList playerListWindow = new PlayerList();
-                playerListWindow.Owner = gameWindow;
-                playerListWindow.ShowDialog();
-                newHighScore.Name = playerListWindow.SelectedPlayer;
-                newHighScore.Value = score;
-                HighScores.Add(newHighScore);     //add new score at the bottom of the list
-                HighScores.ReverseBubbleSort();
 
-                Util.WriteScores(HighScores, GameName + "Names", GameName + "Scores");
+            Score newHighScore = new Score();
+            PlayerList playerListWindow = new PlayerList();
+            playerListWindow.Owner = gameWindow;
+            playerListWindow.ShowDialog();
+            newHighScore.Name = playerListWindow.SelectedPlayer;
+            newHighScore.Value = score;
+            Scores.Add(newHighScore);     //add new score at the bottom of the list
+
+            Scores.ReverseBubbleSort();
+            Util.WriteList<Score>(GameName + ".xml", Scores);
+
+            HighScores.Clear();
+            foreach (Score s in Scores.Take(NumHighScoresToDisplay))
+            {
+                HighScores.Add(s);
             }
+
+            PersonalHighScores.Clear();
+
+            foreach (Score s in Scores)
+            {
+                if (PersonalHighScores.Count < NumHighScoresToDisplay)
+                {
+                    if (s.Name == newHighScore.Name)
+                        PersonalHighScores.Add(s);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            HighScoresWndw newScoreWndw = new HighScoresWndw{
+            DataContext = gameWindow.DataContext,   //passes DataContext of gameWindow (which will be Game) to the high score list window
+            Owner = gameWindow  //sets ownership of high score window
+            };
+            newScoreWndw.ShowDialog();
+            if (newScoreWndw.MakeNewGame)
+                return true;
+            else
+                return false;
+		 
         }
 
-        public void GameOverGolf(int balls, Window gameWindow)
+        public bool GameOverGolf(int balls, Window gameWindow)
         {
             IsOver = true;
-            int numHighScores = HighScores.Count - 1;
-            if (HighScores.ElementAt(numHighScores).Value > balls)  //if smaller than the last item in the high score list
-            {
-                HighScores.RemoveAt(numHighScores);  //remove last score
-                Score newHighScore = new Score();
-                PlayerList playerListWindow = new PlayerList();
-                playerListWindow.Owner = gameWindow;
-                playerListWindow.ShowDialog();
-                newHighScore.Name = playerListWindow.SelectedPlayer;
-                newHighScore.Value = balls;
-                HighScores.Add(newHighScore);     //add new score at the bottom of the list
-                HighScores.ReverseBubbleGolfSort();
 
-                Util.WriteScores(HighScores, GameName + "Names", GameName + "Scores");
+            Score newHighScore = new Score();
+            PlayerList playerListWindow = new PlayerList();
+            playerListWindow.Owner = gameWindow;
+            playerListWindow.ShowDialog();
+            newHighScore.Name = playerListWindow.SelectedPlayer;
+            newHighScore.Value = balls;
+            Scores.Add(newHighScore);     //add new score at the bottom of the list
+
+            Scores.ReverseBubbleGolfSort();
+            Util.WriteList<Score>(GameName + ".xml", Scores);
+
+            HighScores.Clear();
+            foreach (Score s in Scores.Take(NumHighScoresToDisplay))
+            {
+                HighScores.Add(s);
             }
+
+            PersonalHighScores.Clear();
+            foreach (Score s in Scores)
+            {
+                if (PersonalHighScores.Count < NumHighScoresToDisplay)
+                {
+                    if (s.Name == newHighScore.Name)
+                        PersonalHighScores.Add(s);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            HighScoresWndw newScoreWndw = new HighScoresWndw
+            {
+                DataContext = gameWindow.DataContext,   //passes DataContext of gameWindow (which will be Game) to the high score list window
+                Owner = gameWindow  //sets ownership of high score window
+            };
+            newScoreWndw.ShowDialog();
+            if (newScoreWndw.MakeNewGame)
+                return true;
+            else
+                return false;
         }
 
         public void SwitchPlayer()

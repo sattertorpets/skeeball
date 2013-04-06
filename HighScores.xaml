@@ -1,0 +1,52 @@
+﻿<Window x:Class="SkeeBall.HighScoresWndw"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="High Score List"
+        Width="700"
+        Height="500"
+        KeyUp="OnKeyUp"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="hideHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Name="lblHeader"
+               Grid.Row="0"
+               Content="Global High Scores" />
+        <ListView x:Name="lstHighScores"
+                  Grid.Row="1"
+                  FontFamily="Consolas"
+                  FontSize="32"
+                  ItemsSource="{Binding Path=HighScores}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource hideHeaderStyle}">
+                    <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=Value}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

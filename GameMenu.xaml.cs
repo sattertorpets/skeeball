@@ -20,10 +20,68 @@ namespace SkeeBall
     /// </summary>
     public partial class GameMenu : Window
     {
-        
+
         public GameMenu()
         {
             InitializeComponent();
+            
+            LEDWiz ledwiz = new LEDWiz(IntPtr.Zero);
+            ledwiz.StartupLighting();
+            ledwiz.SBA(255,255,255, 128 | 32 | 16,2);
+            byte[] brightness = { 48, 48, 48, 129, 48, 48, 48, 48, 48, 48, 48, 48, 48, 20, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48 }; ;
+            for (int i = 0; i < 32; i++)
+			{
+                if (i > 23)
+                    brightness[i] = 49;
+                else
+                    brightness[i] = 129;
+			}
+            ledwiz.PBA(brightness);
+            //maybe set an attract mode for lighting here
+            //should set the button lighting
+        }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+            SoloGameWindow game = null;
+            try 
+	        {	        
+		        Button test = (Button)sender;  //need to cast this to button to get its name or content for the switch
+                
+                switch (test.Content.ToString())
+                {
+                    case "Classic":
+                        game = new SoloGameWindow("Classic");
+                        break;
+                    case "Skee Ball":
+                        game = new SoloGameWindow("Modern");
+                        break;
+                    case "Multi Ball":
+                    case "310":
+                    case "510":
+                    case "Cricket":
+                        //game = new CricketWindow("Cricket");
+                        break;
+                    case "Tic Tac Three":
+                    case "Tic Tac Skee":
+                    default:
+                        game = new SoloGameWindow("Classic");
+                        break;
+                }
+
+                game.Owner = this;
+                game.ShowDialog();
+	        }
+	        catch (Exception)
+	        {
+                System.Windows.Forms.MessageBox.Show("Something that wasn't a button called the btn_Click function");
+		        throw;
+	        }
+        }
+
+        private void btn_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtGameDescript.Text = "Classic Skeeball, 9 balls, no 100s.  In all menus, blue button is Select/New Game and red button is Back";
         }
 
         private void btnClassic_Click(object sender, RoutedEventArgs e)
@@ -35,7 +93,7 @@ namespace SkeeBall
 
         private void btnClassic_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtGameDescript.Text = "Classic Skeeball, 9 balls, no 100s.  In all menus, yellow button is Select/New Game and red button is Back";
+            txtGameDescript.Text = "Classic Skeeball, 9 balls, no 100s.  In all menus, blue button is Select/New Game and red button is Back";
         }
 
         private void btnCricket_Click(object sender, RoutedEventArgs e)

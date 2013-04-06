@@ -60,8 +60,7 @@ namespace SkeeBall
                 int nextLabel = currentLabel + 1;
                 int prevLabel = currentLabel - 1;
 
-                ObservableCollection<string> PlayerNames = new ObservableCollection<string>();
-                PlayerNames = Util.LoadNames();
+                ObservableCollection<string> PlayerNames = new ObservableCollection<string>(Util.LoadList<string>("players.xml"));
 
                 switch (Util.KeyMap[e.Key])
                 {

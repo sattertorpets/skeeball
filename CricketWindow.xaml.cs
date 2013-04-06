@@ -167,14 +167,20 @@ namespace SkeeBall
                     Storyboard sbdP1Blink = (Storyboard)FindResource("sbdLabelBlink");
                     Storyboard.SetTargetName(sbdP1Blink, "lblPlayer1");
                     sbdP1Blink.Begin(this);
-                    Game.GameOverGolf(Game.Player1.BallsPlayed, this);
+                    if (Game.GameOverGolf(Game.Player1.BallsPlayed, this))
+                        NewGame(Game.GameName, Game.TwoPlayer);
+                    else
+                        this.Close();
                 }
                 else if (Game.Player2.TargetsComplete == 18 && Game.Player2.Score >= Game.Player1.Score)
                 {
                     Storyboard sbdP2Blink = (Storyboard)FindResource("sbdLabelBlink");
                     Storyboard.SetTargetName(sbdP2Blink, "lblPlayer2");
                     sbdP2Blink.Begin(this);
-                    Game.GameOverGolf(Game.Player2.BallsPlayed, this);
+                    if (Game.GameOverGolf(Game.Player2.BallsPlayed, this))
+                        NewGame(Game.GameName, Game.TwoPlayer);
+                    else
+                        this.Close();
                 }
                 else
                 {
@@ -188,7 +194,10 @@ namespace SkeeBall
                 //Check 1P game end conditions
                 if (18 == Game.ActivePlayer.TargetsComplete)
                 {
-                    Game.GameOverGolf(Game.ActivePlayer.BallsPlayed, this);
+                    if (Game.GameOverGolf(Game.ActivePlayer.BallsPlayed, this))
+                        NewGame(Game.GameName, Game.TwoPlayer);
+                    else
+                        this.Close();
                 }
                 else
                     Game.ActivePlayer.BallsLeft = 3;

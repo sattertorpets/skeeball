@@ -17,16 +17,18 @@ namespace SkeeBall
     /// <summary>
     /// Interaction logic for PlayerList.xaml
     /// </summary>
-    
+
     public partial class PlayerList : Window
     {
         public ObservableCollection<string> PlayerNames { get; set; }
         public string SelectedPlayer { get; set; }
+
+        private const string createNew = "CREATE NEW";
+
         public PlayerList()
         {
             InitializeComponent();
-            PlayerNames = new ObservableCollection<string>();
-            PlayerNames = Util.LoadNames();
+            LoadPlayerNames();
             nameList.DataContext = this;
 
         }
@@ -37,7 +39,7 @@ namespace SkeeBall
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SelectedPlayer = ((Button)sender).Content.ToString();
-            if (SelectedPlayer.ToLower() == "create new")
+            if (SelectedPlayer == createNew)
             {
                 NewPlayer newPlayerWindow = new NewPlayer();
                 newPlayerWindow.Owner = this;
@@ -45,19 +47,28 @@ namespace SkeeBall
                 if (newPlayerWindow.EnteredName != "")
                 {
                     SelectedPlayer = newPlayerWindow.EnteredName;
-                    Util.SaveNames(PlayerNames, SelectedPlayer);
-                    this.Close();
+                    PlayerNames.Add(newPlayerWindow.EnteredName);
                 }
             }
-            else
-            {
-                Util.SaveNames(PlayerNames, SelectedPlayer);
-                this.Close();
-            }
-            
+
+            PlayerNames.Remove(SelectedPlayer);
+            PlayerNames.Insert(0, SelectedPlayer);
+
+            SavePlayerNames();
+            this.Close();
+
         }
 
+        private void LoadPlayerNames()
+        {
+            PlayerNames = new ObservableCollection<string>(Util.LoadList<string>("players.xml"));
+            PlayerNames.Add(createNew);
+        }
 
-        
+        private void SavePlayerNames()
+        {
+            PlayerNames.Remove(createNew);
+            Util.WriteList<string>("players.xml", PlayerNames.ToList());
+        }
     }
 }

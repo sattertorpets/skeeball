@@ -24,14 +24,22 @@ namespace SkeeBall
             NewGame(gameName);
             if (gameName == "Multi")  //TODO: replace this with databinding to Game.HasMultiplier
             {
-                colMultiTarget.Width = new GridLength(1, GridUnitType.Star);
+                cnvsMultiplier.Visibility = Visibility.Hidden;
                 colHighScore.Width = new GridLength(0, GridUnitType.Star);
+                colMultiTarget.Width = new GridLength(1, GridUnitType.Star);
             }
             else
             {
-                colMultiTarget.Width = new GridLength(0, GridUnitType.Star);
+                cnvsMultiplier.Visibility = Visibility.Visible;
                 colHighScore.Width = new GridLength(1, GridUnitType.Star);
+                colMultiTarget.Width = new GridLength(0, GridUnitType.Star);
+            }
+            if (gameName == "ThreeTen" || gameName == "FiveTen")
+            {
                 colMultiplier.Width = new GridLength(0, GridUnitType.Star);
+                colScoreTarget.Width = new GridLength(1, GridUnitType.Star);
+                if (gameName == "ThreeTen")
+                    targetScoreBox.Text = "310";
             }
         }
 
@@ -93,7 +101,10 @@ namespace SkeeBall
 
                 if (Game.GameName == "ThreeTen" && Game.ActivePlayer.Score == 310 || Game.GameName == "FiveTen" && Game.ActivePlayer.Score == 510)  //If the score was hit exactly
                 {
-                    Game.GameOverGolf(Game.ActivePlayer.BallsPlayed, this);           //Call the game over function for this game type
+                    if (Game.GameOverGolf(Game.ActivePlayer.BallsPlayed, this))       //Call the game over function for this game type
+                        NewGame(Game.GameName);
+                    else
+                        this.Close();
                 }
                 else if (Game.GameName == "ThreeTen" && Game.ActivePlayer.Score > 310 || Game.GameName == "FiveTen" && Game.ActivePlayer.Score > 510)  //If the player went over the target score
                 {
@@ -102,7 +113,10 @@ namespace SkeeBall
             }
             else if (Game.ActivePlayer.BallsPlayed == 9)    //For normal games, only end if the last ball is thrown
             {
-                Game.GameOver(Game.ActivePlayer.Score, this);
+                if (Game.GameOver(Game.ActivePlayer.Score, this))
+                    NewGame(Game.GameName);
+                else
+                    this.Close();
             }
         }
 

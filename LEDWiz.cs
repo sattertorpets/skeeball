@@ -8,8 +8,23 @@ namespace SkeeBall
 {
     public class LEDWiz : IDisposable
     {
-        private bool disposed = false;
+        //LEDWiz Connections
+        // 1,2,3    - 30 R,G,B
+        // 4,5,6    - 20 R,G,B
+        // 7,8,9    - 10 R,G,B
+        // 10,11,12 - R100 R,G,B
+        // 13,14,15 - 50 R,G,B
+        // 16       - Unused
+        // 17,18,19 - 40 R,G,B
+        // 20,21,22 - L100 R,G,B    All RGB LEDs are common anode, and have their common pin (black wire) connected to 5 V
+        // All Button LEDS are common cathode, and are wired with black as ground and colored wire as 12 V.  They are wired to Bank 4.
+        // 25       - Up (white)
+        // 26       - Down (white)
+        // 27       - Back (red)
+        // 28       - Forward (blue)private bool disposed = false;
 
+        private bool disposed = false;
+        
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct LWZDEVICELIST
         {
@@ -56,7 +71,7 @@ namespace SkeeBall
             deviceList.numdevices = 0;
         }
 
-        public static void Notify(int reason, uint newDevice)
+        public static void Notify(int reason, uint newDevice)  //don't think i need this, will not be plugging/unplugging devices
         {
             if (reason == LWZ_ADD)
             {
@@ -67,7 +82,7 @@ namespace SkeeBall
             }
         }
 
-        public void StartupLighting()
+        public void StartupLighting()   //seems like this may be important even I don't care about the pattern just to initialize the device
         {
             try
             {
@@ -85,22 +100,22 @@ namespace SkeeBall
             }
         }
 
-        public void ShutdownLighting()
+        public void ShutdownLighting()  //similarly, this is called by ledwiz.Dispose()
         {
             for (uint i = 0; i < deviceList.numdevices; i++)
                 LWZ_SBA(DeviceHandles[i], 0, 0, 0, 0, 2);
         }
 
-        public void SBA(int id, int bank1, int bank2, int bank3, int bank4, int globalPulseSpeed)
+        public void SBA(int bank1, int bank2, int bank3, int bank4, int globalPulseSpeed)
         {
-            LWZ_SBA(DeviceHandles[id], (uint)bank1, (uint)bank2, (uint)bank3, (uint)bank4, (uint)globalPulseSpeed);
+            LWZ_SBA(DeviceHandles[0], (uint)bank1, (uint)bank2, (uint)bank3, (uint)bank4, (uint)globalPulseSpeed);
         }
 
-        public void PBA(int id, byte[] val)
+        public void PBA(byte[] val)
         {
             IntPtr ptr = Marshal.AllocCoTaskMem(val.Length);
             Marshal.Copy(val, 0, ptr, val.Length);
-            LWZ_PBA(DeviceHandles[id], (uint)ptr.ToInt32());
+            LWZ_PBA(DeviceHandles[0], (uint)ptr.ToInt32());
             Marshal.FreeCoTaskMem(ptr);
         }
 
@@ -131,7 +146,7 @@ namespace SkeeBall
             get { return deviceList.numdevices; }
         }
 
-        public uint[] DeviceHandles
+        public uint[] DeviceHandles  //will always call this as DeviceHandles[0], since there is only 1 device
         {
             get { return deviceList.handles; }
         }
